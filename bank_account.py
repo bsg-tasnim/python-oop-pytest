@@ -1,14 +1,20 @@
 class Account:
     def __init__(self,acc_num,name,balance):
+        if balance < 0:
+            raise ValueError("Initial balance cannot be negative")
         self.acc_num = acc_num
         self.name = name
         self.balance = balance
 
     def deposit(self,amount):
+        if amount <= 0:
+            raise ValueError("Deposit amount must be greater than zero")
         self.balance+= amount
         print("Amount deposited successfully. New balance is:",self.balance)
 
     def withdraw(self,amount):
+        if amount <= 0:
+            raise ValueError("Withdrawal amount must be greater than zero")
         if amount>self.balance:
             print("Not enough balance")
         else:
@@ -54,8 +60,10 @@ def main():
             account.display()
 
         elif choice==5:
-            print("Invalid choice. Please try again.")
+            print("You have exited the program.")
             break
+        else:
+            print("Invalid choice. Please try again.")
 
 
 if __name__=="__main__":
